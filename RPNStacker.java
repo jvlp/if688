@@ -1,17 +1,18 @@
+import java.util.Scanner;
 import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-
 
 public class RPNStacker {
 
+    private static Scanner scanner = new Scanner(System.in);
     private static Stack<Integer> buffer = new Stack<>();
 
     public static void main(String[] args) throws IOException {
+        String filename = scanner.next();
         String input = "";
-        try (BufferedReader br = new BufferedReader(new FileReader("Calc1.stk"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             while (true) {
 
                 try {
@@ -36,26 +37,6 @@ public class RPNStacker {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-    }
-
-
-    public static String readFile (String filepath) throws IOException, FileNotFoundException {
-        BufferedReader br = new BufferedReader(new FileReader(filepath));
-        String everything;
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-
-            while (line != null) {
-                sb.append(line + " ");
-                //sb.append(System.lineSeparator());
-                line = br.readLine();
-            }
-            everything = sb.toString();
-        } finally {
-            br.close();
-        }
-        return everything;
     }
 
     public static int parseOperation(String operation, Stack<Integer> buffer) {

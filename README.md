@@ -2,7 +2,9 @@
 
 ## Task 1 - RPNStacker
 
-entrada consiste em uma sequencia de números/operações separadas por uma quebra de linha. O caractere "q" encerra a execução
+entrada consiste no nome do arquivo que deve ser lido.  
+o arquivo é composto por uma sequencia de números/operações separadas por uma quebra de linha.  
+O caractere "q" encerra a execução
 
 ### Execução
 
