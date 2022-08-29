@@ -4,28 +4,25 @@
 
 entrada consiste em uma sequencia de números/operações separadas por uma quebra de linha. O caractere "q" encerra a execução
 
-### Exemplo de input
+### Execução
 
 5  
-2  
-+  
+2   
++   
+\>> 7  
 -3  
-+  
-2  
-*  
++   
+\>> 4  
+2   
+*   
+\>> 8  
 4  
 9  
--  
+\-  
+\>> -5  
 2  
 /  
--  
-q  
-
-### output gerado
-\>> 7  
-\>> 4  
-\>> 8  
-\>> -5  
 \>> -2  
+\-  
 \>> 10  
-
+q
