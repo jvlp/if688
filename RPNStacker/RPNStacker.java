@@ -1,21 +1,22 @@
-package RPNStacker;
+package rpnstacker;
 
 import java.util.Scanner;
 import java.util.Stack;
+
+import rpnstacker.lexer.Token;
+import rpnstacker.lexer.TokenType;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import RPNStacker.Lexer.Token;
-import RPNStacker.Lexer.TokenType;
 
-
-public class RPNStackerClass {
+public class RPNStacker {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Stack<Token> buffer = new Stack<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, UnexpectedCharacter {
         String filename = scanner.next();
         String input = "";
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -68,7 +69,7 @@ public class RPNStackerClass {
         return T.type == TokenType.PLUS || T.type == TokenType.MINUS || T.type == TokenType.STAR || T.type == TokenType.SLASH;
     }
 
-    public static Token GenerateToken(String input) {
+    public static Token GenerateToken(String input) throws UnexpectedCharacter {
         if (input == null) return new Token(TokenType.EOF, input);
         switch (input) {
             case "+": return new Token(TokenType.PLUS, input);
@@ -81,8 +82,7 @@ public class RPNStackerClass {
                     Integer aux = Integer.parseInt(input);
                     return new Token(TokenType.NUM, aux);
                 } catch (Exception e) {
-                    System.out.println("Error: Unexpected character: " + input);
-                    return new Token(TokenType.ERROR, input);
+                    throw new UnexpectedCharacter(input);
                 }
         }
     }
