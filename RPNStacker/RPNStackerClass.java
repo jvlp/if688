@@ -63,17 +63,6 @@ public class RPNStackerClass {
         }
     }
 
-    public static boolean isInteger(String input) {
-        if (input == null) return false;
-
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException ex) {
-            return false;
-        }
-        return true;
-    }
-
     public static boolean isOperation(Token T) {
         if (T == null) return false;
         return T.type == TokenType.PLUS || T.type == TokenType.MINUS || T.type == TokenType.STAR || T.type == TokenType.SLASH;
