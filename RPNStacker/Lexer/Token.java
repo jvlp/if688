@@ -24,9 +24,44 @@ public class Token {
 	public final TokenType type; // token type
 	public final String lexeme; // token value
 
-	public Token (TokenType type, String value) {
-		this.type = type;
-		this.lexeme = value;
+	public Token (String value) throws UnexpectedCharacter {
+
+		if (value == null){
+			this.type = TokenType.EOF;
+			this.lexeme = value;
+			return;
+		}
+
+		if (Regex.isNum(value)){
+			this.type = TokenType.NUM;
+			this.lexeme = value;
+			return;
+		}
+
+        switch (value) {
+            case "+":
+				this.type = TokenType.PLUS;
+				this.lexeme = value;
+				break;
+            case "-":
+				this.type = TokenType.MINUS;
+				this.lexeme = value;
+                break;
+            case "*":
+				this.type = TokenType.STAR;
+				this.lexeme = value;
+                break;
+            case "/":
+				this.type = TokenType.SLASH;
+				this.lexeme = value;
+                break;
+            case "q":
+				this.type = TokenType.EOF;
+				this.lexeme = value;
+                break;
+            default:
+				throw new UnexpectedCharacter(value);
+        }
 	}
 
 	public Token (TokenType type, Integer value) {

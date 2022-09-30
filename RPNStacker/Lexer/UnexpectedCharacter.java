@@ -1,4 +1,4 @@
-package rpnstacker;
+package rpnstacker.lexer;
 public class UnexpectedCharacter extends Exception { 
     public UnexpectedCharacter(String message){
         super(message);

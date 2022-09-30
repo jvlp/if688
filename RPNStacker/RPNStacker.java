@@ -3,8 +3,7 @@ package rpnstacker;
 import java.util.Scanner;
 import java.util.Stack;
 
-import rpnstacker.lexer.Token;
-import rpnstacker.lexer.TokenType;
+import rpnstacker.lexer.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,7 +20,7 @@ public class RPNStacker {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             while (true) {
                 input = br.readLine();
-                Token newToken = GenerateToken(input);
+                Token newToken = new Token(input);
                 buffer.push(newToken);
                 System.out.println(newToken);
                 if (newToken.type == TokenType.EOF) {
@@ -29,7 +28,7 @@ public class RPNStacker {
                 }
                 System.out.println("> " + input);
 
-                if (isOperation(newToken)) {
+                if (Regex.isOperation(newToken.lexeme)) {
                     int current = parseOperation(buffer);
                     newToken = new Token(TokenType.NUM, current);
                     System.out.println(newToken);
@@ -66,37 +65,6 @@ public class RPNStacker {
             }
             default:
                 return left;
-        }
-    }
-
-    public static boolean isOperation(Token T) {
-        if (T == null)
-            return false;
-        return T.type == TokenType.PLUS || T.type == TokenType.MINUS || T.type == TokenType.STAR
-                || T.type == TokenType.SLASH;
-    }
-
-    public static Token GenerateToken(String input) throws UnexpectedCharacter {
-        if (input == null)
-            return new Token(TokenType.EOF, input);
-        switch (input) {
-            case "+":
-                return new Token(TokenType.PLUS, input);
-            case "-":
-                return new Token(TokenType.MINUS, input);
-            case "*":
-                return new Token(TokenType.STAR, input);
-            case "/":
-                return new Token(TokenType.SLASH, input);
-            case "q":
-                return new Token(TokenType.EOF, input);
-            default:
-                try {
-                    Integer aux = Integer.parseInt(input);
-                    return new Token(TokenType.NUM, aux);
-                } catch (Exception e) {
-                    throw new UnexpectedCharacter(input);
-                }
         }
     }
 }
