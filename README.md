@@ -1,10 +1,9 @@
 # Compiladores
 
-## Task 1/2 - RPNStacker
+## Task 1/2/3 - RPNStacker
 
 entrada consiste no nome do arquivo que deve ser lido.  
-o arquivo é composto por uma sequencia de números/operações separadas por uma quebra de linha.  
-O caractere "q" ou EOF encerra a execução
+o arquivo é composto por uma sequencia de números/operações separadas por uma quebra de linha.
 
 ### Execução  
 &nbsp;  

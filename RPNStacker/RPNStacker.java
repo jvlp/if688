@@ -43,7 +43,7 @@ public class RPNStacker {
     }
 
     public static int parseOperation(Stack<Token> buffer) {
-        String operation = buffer.pop().lexeme;
+        TokenType operation = buffer.pop().type;
         int right = (buffer.empty()) ? 0 : Integer.parseInt(buffer.pop().lexeme);
 
         if (buffer.empty())
@@ -51,13 +51,13 @@ public class RPNStacker {
 
         int left = Integer.parseInt(buffer.pop().lexeme);
         switch (operation) {
-            case "+":
+            case PLUS:
                 return left + right;
-            case "-":
+            case MINUS:
                 return left - right;
-            case "*":
+            case STAR:
                 return left * right;
-            case "/": {
+            case SLASH: {
                 if (right == 0) {
                     return left;
                 }

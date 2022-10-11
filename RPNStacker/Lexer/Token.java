@@ -38,30 +38,13 @@ public class Token {
 			return;
 		}
 
-        switch (value) {
-            case "+":
-				this.type = TokenType.PLUS;
-				this.lexeme = value;
-				break;
-            case "-":
-				this.type = TokenType.MINUS;
-				this.lexeme = value;
-                break;
-            case "*":
-				this.type = TokenType.STAR;
-				this.lexeme = value;
-                break;
-            case "/":
-				this.type = TokenType.SLASH;
-				this.lexeme = value;
-                break;
-            case "q":
-				this.type = TokenType.EOF;
-				this.lexeme = value;
-                break;
-            default:
-				throw new UnexpectedCharacter(value);
-        }
+        TokenType OP = Regex.getOP(value);
+		if (OP != null){
+			this.type = OP;
+			this.lexeme = value;
+		}else{
+			throw new UnexpectedCharacter(value);
+		}
 	}
 
 	public Token (TokenType type, Integer value) {
